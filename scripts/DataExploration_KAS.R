@@ -27,4 +27,7 @@ ggplot(data = monkey_agg,
   geom_boxplot()
 
 'Notes from looking at data:
-Exp.1to4.i'
+
+Exp.1to4.i is predominantly below one, with only one outlier having close to 1.5
+aggressive interactions per day. During the observation periods, initiating
+aggressive acts happens less than once a day.'
