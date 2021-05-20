@@ -14,7 +14,7 @@ library(tidyverse)
 library(ggplot2)
 
 'Import Data using GitHub permalink to "master" branch'
-monkey_agg <- read.csv("https://github.com/1010sheehy/EVE298_LMM_GroupProj/blob/b2eaae7060260484ea3525a567655eaa8ceac566/data/MASTER_Infant_Conflict_DataSet_03.01.19Version_ForEVE298.xlsm%20-%20All%20data%20with%20NAs.csv", header = TRUE)
+monkey_agg <- read.csv("~/Desktop/R_Projects/EVE298_LMM_GroupProj/data/Infant_Conflict_Data_W_O_NAs_20210519.csv", header = TRUE)
 head(monkey_agg)
 str(monkey_agg)
 summary(monkey_agg)
@@ -36,23 +36,34 @@ hist(monkey_agg$Mom.inv.1to4.i) # skewed because of one outlier at 3.5+ aggressi
 dotchart(monkey_agg$Mom.inv.1to4.i) # not a good starry night
 hist(monkey_agg$Mom.inv.1to4.r) # also skewed, but not just because of one outlier (like with Mom initiating)
 dotchart(monkey_agg$Mom.inv.1to4.r) # looks ok!
+'the outliers for Mom.inv.1to4.i and Mom.inv.1to4.r are not the same
+individuals: Tamar (mom of Terra) and Cambridge (mom of Camden)'
 
 # .. Infant exposure to aggression ----
 hist(monkey_agg$Exp.1to4.i) # skewed because of one outlier at 1.5 aggressive interactions per day
-dotchart(monkey_agg$Exp.1to4.i) # not a good starry night! Looks trumpet-y to me
-hist(monkey_agg$Exp.1to4.r) # also skewed, but not just because of one outlier, just 
-dotchart(monkey_agg$Exp.1to4.r) # looks ok!
+dotchart(monkey_agg$Exp.1to4.i) # ok starry night, but one outlier
+hist(monkey_agg$Exp.1to4.r) # also skewed, but not just because of one outlier, just descending frequencies from 0 to 1.2
+dotchart(monkey_agg$Exp.1to4.r) # looks ok, except for that one outlier
+'Outlier for Exp.1to4.i is Terra, child of Tamar
+Outlier for Exp.1to4.r Quidditch, child of Queena'
 
+# > Response Variables ----
+
+hist(monkey_agg$Inv.i.15) # ok, slightly skewed
+dotchart(monkey_agg$Inv.i.15) # also ok, but two outliers
+hist(monkey_agg$Inv.i.13) # skewed
+dotchart(monkey_agg$Inv.i.13) # good! Nice even distribution.
+hist(monkey_agg$Inv.i.10) # skewed
+dotchart(monkey_agg$Inv.i.10) # whaaat? Lots of zeros, then a kind of upward trend?
+'Month 10 was pulled at a separate time, so something happened on the human end
+that caused a ton of zero values.
+
+MONTH 13 is the response variable of choice because it has a good spread.'
 
 
 ### Building the Model ----
 
-'| Structure | Variable | Type        | # levels | Experiment Unit |
- |-----------|----------|-------------|----------|-----------------|
- | Treatment | LNLENGTH | Categorical | 24       | rep:gen         |
- | Design    | rep      | Categorical | 3        |                 |
- |           | block    | Categorical | 18       |                 |
- | Response  | AFD      | Numeric     | 72       |                 |'
+
 
 
 
