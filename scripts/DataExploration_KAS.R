@@ -14,7 +14,7 @@ library(tidyverse)
 library(ggplot2)
 
 'Import Data using GitHub permalink to "master" branch'
-monkey_agg <- read.csv("https://raw.githubusercontent.com/1010sheehy/EVE298_LMM_GroupProj/master/data/Infant_Conflict_Data_W_O_NAs.csv", header = TRUE)
+monkey_agg <- read.csv("https://github.com/1010sheehy/EVE298_LMM_GroupProj/blob/b2eaae7060260484ea3525a567655eaa8ceac566/data/MASTER_Infant_Conflict_DataSet_03.01.19Version_ForEVE298.xlsm%20-%20All%20data%20with%20NAs.csv", header = TRUE)
 head(monkey_agg)
 str(monkey_agg)
 summary(monkey_agg)
@@ -37,7 +37,12 @@ dotchart(monkey_agg$Mom.inv.1to4.i) # not a good starry night
 hist(monkey_agg$Mom.inv.1to4.r) # also skewed, but not just because of one outlier (like with Mom initiating)
 dotchart(monkey_agg$Mom.inv.1to4.r) # looks ok!
 
-# .. Matriline ----
+# .. Infant exposure to aggression ----
+hist(monkey_agg$Exp.1to4.i) # skewed because of one outlier at 1.5 aggressive interactions per day
+dotchart(monkey_agg$Exp.1to4.i) # not a good starry night! Looks trumpet-y to me
+hist(monkey_agg$Exp.1to4.r) # also skewed, but not just because of one outlier, just 
+dotchart(monkey_agg$Exp.1to4.r) # looks ok!
+
 
 
 ### Building the Model ----
